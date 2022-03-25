@@ -1,0 +1,31 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
+@function implode-list($list, $separator: '--') {
+    $listLength: list.length($list);
+    $result: '';
+
+    @each $element in $list {
+        $nextAdd: $element;
+
+        @if list.index($list, $element) != $listLength {
+            $nextAdd: string.insert($element, $separator, string.length($element) + 1);
+        }
+
+        $result: string.insert($result, $nextAdd, string.length($result) + 1);
+    }
+
+    @return $result;
+}
+
+@mixin map-to-custom-properties($config, $list: (), $separator: '--') {
+    @each $key, $value in $config {
+        @if meta.type-of($value) == 'map' {
+            @include map-to-custom-properties($value, list.append($list, $key), $separator);
+        } @else {
+            --#{implode-list(list.append($list, $key), $separator)}: #{$value};
+        }
+    }
+}

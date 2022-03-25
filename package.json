@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "prettier": "npx prettier ./*.{json,md} ./src ./tests --write"
+    },
+    "devDependencies": {
+        "@inpsyde/prettier-config": "1.0.1",
+        "jest": "^27.5.1",
+        "prettier": "2.6.0",
+        "sass": "^1.49.9",
+        "sass-true": "^6.1.0"
+    },
+    "prettier": "@inpsyde/prettier-config"
+}

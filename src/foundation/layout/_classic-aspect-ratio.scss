@@ -1,0 +1,27 @@
+@use 'sass:math';
+
+@mixin _calc-padding-top-percent($width, $height) {
+    padding-top: math.percentage(math.div($height, $width));
+}
+
+@mixin wide() {
+    @include _calc-padding-top-percent(16, 9);
+}
+
+@mixin ultra-wide() {
+    @include _calc-padding-top-percent(21, 9);
+}
+
+@mixin child-full-cover {
+    & > * {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,25 @@
+@use '../node_modules/sass-true' as true;
+
+@include true.describe('dummy test set') {
+    @include true.it('can test return values') {
+        @include true.assert-equal('foo', 'bar');
+    }
+}
+
+@include true.describe('another dummy test set') {
+    @include true.it('can test outputs') {
+        @include true.assert() {
+            @include true.output() {
+                div {
+                    color: red;
+                }
+            }
+
+            @include true.expect() {
+                div {
+                    color: blue;
+                }
+            }
+        }
+    }
+}
